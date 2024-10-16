@@ -1,0 +1,62 @@
+header {
+    position: relative; /* Allows absolute positioning for child elements */
+    display: flex;
+    align-items: flex-end; /* Align items to the bottom */
+    padding: 10px;
+    background-color:yellowgreen; /* Light background color */ 
+    width: 100%;
+}
+
+h1 {
+    margin-right: auto; /* Pushes the header title to the left */
+    margin-bottom: 50px;
+}
+
+#LogIn {
+    position: absolute; /* Allows the button to be positioned relative to the header */
+    top: 10px; /* Adjusts the vertical position */
+    right: 35px; /* Adjusts the horizontal position */
+    padding: 10px; /* Button padding */
+    cursor: pointer; /* Change cursor on hover */
+    background-color: #007bff; /* Button background color */
+    color: white; /* Text color */
+    border: none; /* Remove border */
+    border-radius: 5px; /* Rounded corners */
+}
+
+#Home{
+    position: absolute; /* Allows the button to be positioned relative to the header */
+    top: 95px; /* Adjusts the vertical position */
+    left: 10px;
+}
+
+#Manage_Team{
+    position: absolute; /* Allows the button to be positioned relative to the header */
+    top: 95px; /* Adjusts the vertical position */
+    left: 70px;
+}
+
+#LeaderBoard{
+    position: absolute; /* Allows the button to be positioned relative to the header */
+    top: 95px; /* Adjusts the vertical position */
+    left: 180px;
+}
+
+#How_To_Play{
+    position: absolute; /* Allows the button to be positioned relative to the header */
+    top: 95px; /* Adjusts the vertical position */
+    left: 280px;
+}
+
+body{
+    margin : 0px;
+}
+
+.Buttons{
+    border: none;
+    background-color:crimson;
+    padding: 8px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
