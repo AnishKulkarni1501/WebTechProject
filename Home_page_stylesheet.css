@@ -1,9 +1,10 @@
+/* Header styles */
 header {
     position: relative; /* Allows absolute positioning for child elements */
     display: flex;
     align-items: flex-end; /* Align items to the bottom */
     padding: 10px;
-    background-color:yellowgreen; /* Light background color */ 
+    background-color: rgb(19, 55, 172); /* Light background color */ 
     width: 100%;
 }
 
@@ -24,39 +25,70 @@ h1 {
     border-radius: 5px; /* Rounded corners */
 }
 
-#Home{
-    position: absolute; /* Allows the button to be positioned relative to the header */
+#Home, #Manage_Team, #LeaderBoard, #How_To_Play {
+    position: absolute; /* Allows the buttons to be positioned relative to the header */
     top: 95px; /* Adjusts the vertical position */
+    
+}
+
+#Home {
     left: 10px;
 }
 
-#Manage_Team{
-    position: absolute; /* Allows the button to be positioned relative to the header */
-    top: 95px; /* Adjusts the vertical position */
+#Manage_Team {
     left: 70px;
 }
 
-#LeaderBoard{
-    position: absolute; /* Allows the button to be positioned relative to the header */
-    top: 95px; /* Adjusts the vertical position */
+#LeaderBoard {
     left: 180px;
 }
 
-#How_To_Play{
-    position: absolute; /* Allows the button to be positioned relative to the header */
-    top: 95px; /* Adjusts the vertical position */
+#How_To_Play {
     left: 280px;
 }
 
-body{
-    margin : 0px;
+body {
+    margin: 0px;
 }
 
-.Buttons{
+/* Button styles */
+.Buttons {
     border: none;
-    background-color:crimson;
+    background-color: crimson;
     padding: 8px;
     border-radius: 5px;
     margin-bottom: 10px;
+    cursor: pointer;
 }
 
+/* Main content layout */
+.main-content {
+    display: flex; /* Flexbox to align sections side by side */
+    justify-content: space-between; /* Space between the Container and News */
+    padding: 20px;
+}
+
+/* Container for Upcoming Games */
+#Container {
+    width: 60%; /* Adjusted width */
+    background-color: aqua;
+    padding: 10px; /* Added padding */
+    border-radius: 5px; /* Rounded corners */
+}
+
+/* News Section */
+#News {
+    width: 30%; /* Adjusted width */
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+
+footer{
+    padding: 1px;
+    text-align: center;
+    background-color: rgb(19, 55, 172); /* Light background color */ 
+    width: 100%;
+}
