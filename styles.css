@@ -1,14 +1,14 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    
+    background-color: #f4f4f4;
 }
 
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #333;
+    background-color:  rgb(81, 104, 170);
     color: white;
     padding: 10px 20px;
     
@@ -34,18 +34,21 @@ h1 {
     margin-left: 10px;
 }
 
+
+
 .side-menu {
     height: 100%;
-    width: 0;
-    position: fixed;
-    top:55px;
+    width: 0; /* Start hidden */
+    position: fixed; /* Fix position */
+    top: 55px;
     left: 0;
-    background-color: #333;
+    background-color: rgb(81, 104, 170);
     overflow-x: hidden;
-    transition: 0.3s;
+    transition: 0.3s; /* Smooth transition */
     padding-top: 20px;
-    
+    z-index: 1000; /* Ensure it stays on top */
 }
+
 
 
 
@@ -69,4 +72,188 @@ h1 {
 {
     
     background-color: #000000;
+}
+
+
+#boxes {
+    margin-top: none;
+    background: #148eda;
+}
+
+.container {
+    display: block; /* Stack the boxes vertically */
+    width: 100%; /* Ensure the container spans the full width */
+}
+
+.box {
+    width: 100%; /* Make each box take up the full width of the container */
+    padding: 10px;
+    text-align: center;
+    background-color: rgb(81, 104, 170);
+    color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    border: 2px solid darkblue;
+    margin: 10px 0; /* Add margin between boxes */
+}
+
+
+.container .box:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    transform:scale(1.1) ;
+  }
+
+
+
+.Introduction h1{
+    background-color: #007BFF;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.Introduction{
+    font-family: 'Arial', sans-serif;
+    /* background-color: #f4f4f4; */
+    color: #333;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+
+
+section {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Introduction Section */
+.intro p {
+    font-size: 1.1rem;
+    text-align: center;
+}
+
+/* How It Works Section */
+.how-it-works {
+    margin-top: 30px;
+}
+
+.how-it-works h2 {
+    text-align: center;
+    color: #007BFF;
+}
+
+.how-it-works ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.how-it-works ul li {
+    margin: 10px 0; /* Adjust the space between each list item */
+    padding-left: 50px; /* More space between the bullet and the text */
+    position: relative;
+}
+
+.how-it-works ul li::before {
+    content: "⚽"; /* Bullet symbol */
+    position: absolute;
+    left: 10px; /* Position the bullet closer to the left */
+    font-size: 1.5rem;
+    color: #007BFF;
+}
+
+
+/* Why Play Section */
+.why-play {
+    margin-top: 30px;
+}
+
+.why-play h2 {
+    text-align: center;
+    color: #007BFF;
+}
+
+.why-play ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.why-play ul li {
+    margin: 10px 0;
+    padding-left: 40px;
+    position: relative;
+}
+
+.why-play ul li::before {
+    content: "🏆"; /* Bullet symbol */
+    position: absolute;
+    left: 0;
+    font-size: 1.5rem;
+    color: #007BFF;
+}
+
+/* Join Section */
+.join {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.join h2 {
+    color: #007BFF;
+}
+
+.join p a {
+    color: #007BFF;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.join p a:hover {
+    text-decoration: underline;
+}
+
+
+/* Flex container for the Introduction and right side */
+.content-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    margin: 0 auto;
+    max-width: 1200px; /* Set a max width for the content */
+    transition: margin-left 0.5s; /* Smooth transition for margin */
+}
+
+/* Introduction on the left */
+.Introduction {
+    flex: 1;
+    max-width: 45%;
+    margin-right: 20px;
+}
+
+/* Right-side content including results and boxes */
+.right-side {
+    flex: 1;
+    max-width: 50%;
+}
+
+/* Container for boxes */
+.container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+
+.container .box:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    transform: scale(1.1);
+}
+
+/* Results style */
+#Display_Results {
+    margin-bottom: 20px;
 }
