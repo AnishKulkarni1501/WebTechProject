@@ -4,40 +4,247 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fantasy Football</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="New_Home_styles.css">
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 </head>
-<body background="logo.png"><!---This will be changed-->
+<body >
     <header>
         <div class="menu-icon" id="menuToggle" onclick="toggleMenu()">&#9776;</div>
         <h1>Fantasy Football</h1>
         <div class="auth-buttons">
-            <a href="#" id="signlog">Sign In</a>
-            <a href="#" id="signlog">Login</a>
+            <a href="#" class="signlog">Sign In</a>
+            <a href="#" class="signlog">Login</a>
         </div>
     </header>
 
     <div id="side-menu" class="side-menu">
-        <div class="close-button" onclick="toggleMenu()"></div>
+        <div class="close-button" onclick="toggleMenu()">X</div>
         <a href="#">How to Play</a>
         <a href="#">Leader Board</a>
         <a href="#">Upcoming Matches</a>
     </div>
-  
-    <script>
-        function toggleMenu() {
-            const menu = document.getElementById('side-menu');
-            const menuToggle = document.getElementById('menuToggle');
-            if (menu.style.width === '250px') {
-                menu.style.width = '0';
-                menuToggle.innerHTML = '&#9776;';
-            } else {
-                menu.style.width = '250px';
-                menu.style.transition='0.5s';
-                menuToggle.style.size = '50px'
-                menuToggle.innerHTML = '&times;';
+
+    <div class="content-container">
+        <div class="Introduction">
+            <h1>Welcome to Fantasy Football!</h1>
+            <section class="intro">
+                <p>Get ready to experience football like never before. Fantasy Football lets you build your dream team, compete with friends, and test your skills as a football manager.</p>
+            </section>
+
+            <section class="how-it-works">
+                <h2>How Does It Work?</h2>
+                <ul>
+                    <li><strong>Create Your Team</strong> – Start by selecting real-life football players from top leagues.</li>
+                    <li><strong>Compete with Friends & Others</strong> – Join leagues to compete with friends and others worldwide.</li>
+                    <li><strong>Manage & Transfer</strong> – Make strategic transfers to keep your team competitive every week.</li>
+                    <li><strong>Climb the Rankings</strong> – Rise through the ranks and earn bragging rights!</li>
+                </ul>
+            </section>
+
+            <section class="why-play">
+                <h2>Why Play Fantasy Football?</h2>
+                <ul>
+                    <li><strong>Stay Connected to the Game</strong> – Fantasy Football brings you closer to the sport you love.</li>
+                    <li><strong>Challenge Your Friends</strong> – Play in private leagues with your friends for bragging rights.</li>
+                    <li><strong>Show Off Your Football Knowledge</strong> – Prove your knowledge of the game by managing the best team.</li>
+                </ul>
+            </section>
+
+            <section class="join">
+                <h2>Join the Fun!</h2>
+                <p>Ready to kick off? <a href="#">Sign up now</a>, build your team, and dive into the excitement of Fantasy Football.</p>
+            </section>
+        </div>
+
+        <div class="right-side">
+            <div class="container">
+
+                <div class="box">
+                <h3>Results</h3>
+                <div id="Display_Results"></div>
+                </div>
+
+                <div class="box">
+                    <h3>Highest Picked Players</h3>
+                    <p>Stay updated with the most-picked players each week.</p>
+                </div>
+
+                <div class="box">
+                    <h3>Team Of The Week</h3>
+                    <div id="Team_Of_the_Week"></div>
+                </div>
                 
+                <div class="box">
+                    <h3>Latest News</h3>
+                    <p>Get the latest updates on transfers, injuries, and team news.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/babel">
+        class Results extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = { isHovered: false };
+            }
+
+            handleMouseEnter = () => {
+                this.setState({ isHovered: true });
+            };
+
+            handleMouseLeave = () => {
+                this.setState({ isHovered: false });
+            };
+
+            render() {
+                const styles = {
+                    resultContainer: {
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        // float:'left',
+                        backgroundColor: this.state.isHovered ? '#e0e0ff' : '#f2f2f2',
+                        padding: '5px',
+                        borderRadius: '10px',
+                        boxShadow: this.state.isHovered ? '0 0 15px rgba(0, 0, 0, 0.2)' : '0 0 10px rgba(0, 0, 0, 0.1)',
+                        width: '80%',
+                        margin: '0 auto',
+                        marginTop: '20px',
+                        border: 'darkblue 3px solid',
+                        transition: 'all 0.3s ease',
+                        height:'40px'
+                    },
+                    scoreText: {
+                        fontSize: '20px',
+                        fontWeight: 'bold',
+                        color: 'black',
+                        textAlign: 'center',
+                    },
+                    teamNames: {
+                        color: this.state.isHovered ? '#0056b3' : '#007BFF',
+                        fontSize: '18px',
+                    },
+                };
+
+                return (
+                    <div
+                        style={styles.resultContainer}
+                        onMouseEnter={this.handleMouseEnter}
+                        onMouseLeave={this.handleMouseLeave}
+                    >
+                        <h5 style={styles.scoreText}>
+                            <span style={styles.teamNames}>{this.props.Home}</span> {this.props.Home_Score} -
+                            {this.props.Away_Score} <span style={styles.teamNames}>{this.props.Away}</span>
+                        </h5>
+                    </div>
+                );
             }
         }
+
+        ReactDOM.render(
+            <>
+                <Results Home="MNU" Home_Score="7" Away="LIV" Away_Score="0" />
+                <Results Home="MNU" Home_Score="7" Away="LIV" Away_Score="0" />
+                <Results Home="MNU" Home_Score="7" Away="LIV" Away_Score="0" />
+                <Results Home="MNU" Home_Score="7" Away="LIV" Away_Score="0" />
+                <Results Home="MNU" Home_Score="7" Away="LIV" Away_Score="0" />
+            </>,
+            document.getElementById("Display_Results")
+        );
     </script>
+
+    <script>
+        function toggleMenu() {
+        const menu = document.getElementById('side-menu');
+        const menuToggle = document.getElementById('menuToggle');
+        const contentContainer = document.querySelector('.content-container'); // Select the content container
+
+        if (menu.style.width === '250px') {
+            menu.style.width = '0';
+            menuToggle.innerHTML = '&#9776;';
+            contentContainer.style.marginLeft = '0'; // Reset margin when menu is closed
+        } else {
+            menu.style.width = '250px';
+            menu.style.transition = '0.5s';
+            menuToggle.innerHTML = '&times;';
+            contentContainer.style.marginLeft = '250px'; // Push content when menu is open
+        }
+}
+
+    </script>
+
+<script type="text/babel">
+    const CanvasWithImageBackground = ({ initialTexts }) => {
+        const canvasRef = React.useRef(null);
+
+        React.useEffect(() => {
+            const canvas = canvasRef.current;
+            const context = canvas.getContext('2d');
+
+            
+            canvas.width = 500;
+            canvas.height = 500;
+
+            
+            const backgroundImage = new Image();
+            backgroundImage.src = 'Half_Pitch.png'; 
+
+            
+            backgroundImage.onload = () => {
+                context.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
+                drawCirclesAndText(context);
+            };
+        }, [initialTexts]);
+
+        const drawCirclesAndText = (context) => {
+            const circles = [
+                { x: 250, y: 40, radius: 30, color: 'red' },
+                { x: 50, y: 150, radius: 30, color: 'red' },
+                { x: 175, y: 150, radius: 30, color: 'red' },
+                { x: 325, y: 150, radius: 30, color: 'red' },
+                { x: 450, y: 150, radius: 30, color: 'red' },
+                { x: 113, y: 275, radius: 30, color: 'red' },
+                { x: 250, y: 275, radius: 30, color: 'red' },
+                { x: 388, y: 275, radius: 30, color: 'red' },
+                { x: 113, y: 400, radius: 30, color: 'red' },
+                { x: 250, y: 400, radius: 30, color: 'red' },
+                { x: 388, y: 400, radius: 30, color: 'red' },
+            ];
+
+            circles.forEach((circle, index) => {
+                drawCircle(context, circle.x, circle.y, circle.radius, circle.color);
+                context.font = 'bold 15px Arial'; 
+                context.fillText(initialTexts[index], circle.x - 40, circle.y + 50); 
+            });
+        };
+
+        const drawCircle = (context, x, y, radius, color) => {
+            context.beginPath();
+            context.arc(x, y, radius, 0, Math.PI * 2);
+            context.fillStyle = color;
+            context.fill();
+            context.closePath();
+        };
+
+        return (
+            <div style={{ textAlign: 'center', marginTop: '20px' }}>
+                <canvas ref={canvasRef}></canvas>
+            </div>
+        );
+    };
+
+    const initialTexts = [
+        "Player_One", "Player_Two", "Player_Three", "Player_Four", "Player_Five", 
+        "Player_Six", "Player_Seven", "Player_Eight", "Player_Nine", "Player_Ten", "Player_Eleven"
+    ];
+
+    
+    ReactDOM.render(<CanvasWithImageBackground initialTexts={initialTexts} />, document.getElementById("Team_Of_the_Week"));
+</script>
+
 </body>
+
 </html>
