@@ -1,0 +1,27 @@
+* {box-sizing:border-box}
+
+/* Slideshow container */
+.slideshow-container {
+  max-width: 100vw;
+  height: 100vh;
+  position: relative;
+  margin: auto;
+}
+
+/* Hide the images by default */
+.mySlides img{
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+}
+
+
+.fade {
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
