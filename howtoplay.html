@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fantasy Football</title>
+    <link rel="stylesheet" href="styleshtp.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="menu-icon" id="menuToggle" onclick="toggleMenu()">&#9776;</div>
+        <h1>How to Play</h1>
+    </header>
+    
+    <div id="side-menu" class="side-menu">
+        <div class="close-button" onclick="toggleMenu()"></div>
+        <a href="index.html">Home</a>
+        <a href="#">Leader Board</a>
+        <a href="#">Upcoming Matches</a>
+    </div>
+    
+    <div id="overlay" class="overlay" onclick="toggleMenu()"></div>
+    
+    <main>
+        <section class="intro">
+            <h2>Welcome to Fantasy Football!</h2>
+            <p>Fantasy Football is a game where you manage a team of real-world football players and score points based on their actual performances in matches. The goal is to assemble the best team and score the most points each gameweek.</p>
+        </section>
+
+        <section class="how-to-play">
+            <h2>How to Play</h2>
+            <ol>
+                <li><strong>Create Your Team:</strong> Select players within a budget to form your fantasy team of 11 players.</li>
+                <li><strong>Set Your Formation:</strong> Choose your formation (e.g., 4-4-2, 3-5-2) by deciding how many defenders, midfielders, and attackers to play.</li>
+                <li><strong>Choose Your Captain:</strong> Pick a captain who will score double points for that week.</li>
+                <li><strong>Make Transfers:</strong> You can make transfers each gameweek to improve your team by swapping out players.</li>
+                <li><strong>Score Points:</strong> Points are awarded based on real-life player performances in matches (goals, assists, clean sheets, etc.).</li>
+                <li><strong>Compete:</strong> Compete against other players and climb the leaderboards.</li>
+            </ol>
+        </section>
+
+        <section class="scoring-system">
+            <h2>Scoring System</h2>
+            <ul>
+                <li><i class="fas fa-futbol"></i> <strong>Goal Scored (Forward):</strong> 4 points</li>
+                <li><i class="fas fa-futbol"></i> <strong>Goal Scored (Midfielder):</strong> 5 points</li>
+                <li><i class="fas fa-hand-holding-heart"></i> <strong>Assist:</strong> 3 points</li>
+                <li><i class="fas fa-shield-alt"></i> <strong>Clean Sheet (Defender/Goalkeeper):</strong> 4 points</li>
+                <li><i class="fas fa-square"></i> <strong>Yellow Card:</strong> -1 point</li>
+                <li><i class="fas fa-square"></i> <strong>Red Card:</strong> -3 points</li>
+            </ul>
+        </section>
+
+        <section class="faq">
+            <h2>Frequently Asked Questions (FAQ)</h2>
+            <p><strong>Q: Can I change my team after the season starts?</strong><br>A: Yes, you can make transfers each week.</p>
+            <p><strong>Q: How many players can I transfer in one week?</strong><br>A: You can transfer as many players as you want, but only one free transfer is available per week. Additional transfers will cost points.</p>
+        </section>
+    </main>
+
+    <footer class="footer">
+        &copy; Ultimate Fantasy League
+        <div class="social-icons">
+            <a href="#" target="_blank" class="instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" target="_blank" class="twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" target="_blank" class="yt"><i class="fab fa-youtube"></i></a>
+            <a href="#" target="_blank" class="telegram"><i class="fab fa-telegram"></i></a>
+        </div>
+    </footer>
+    
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('side-menu');
+            const icon = document.getElementById('menuToggle');
+            const overlay = document.getElementById('overlay');
+            if (menu.style.width === '250px') {
+                menu.style.width = '0';
+                overlay.style.display = 'none';
+            } else {
+                menu.style.width = '250px';
+                menu.style.opacity = '100%';
+                overlay.style.display = 'block';
+            }
+        }
+       
+    </script>
+</body>
+</html>
