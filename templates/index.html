@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Next Premier League Match Countdown</title>
+</head>
+<body>
+    <h1>Next Premier League Match Countdown</h1>
+    <div id="match-info">
+        <p id="teams"></p>
+        <p id="match-time"></p>
+        <h2 id="countdown"></h2>
+    </div>
+
+    <script>
+        function startCountdown(matchDate, countdownElement) {
+            const interval = setInterval(() => {
+                const now = new Date().getTime();
+                const timeLeft = new Date(matchDate) - now;
+    
+                if (timeLeft <= 0) {
+                    clearInterval(interval);
+                    countdownElement.innerText = 'Match is starting!';
+                } else {
+                    const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+                    const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                    const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+                    countdownElement.innerText = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+                }
+            }, 1000);
+        }
+    
+        fetch('/next_match')
+        .then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                document.getElementById('match-info').innerText = "Failed to retrieve match data.";
+            } else {
+                const matchInfoContainer = document.getElementById('match-info');
+                matchInfoContainer.innerHTML = '';
+    
+                data.matches.forEach(match => {
+                    const homeTeam = match.home_team;
+                    const awayTeam = match.away_team;
+                    const matchDate = match.match_date;
+    
+                    const matchDiv = document.createElement('div');
+                    const teamsElement = document.createElement('p');
+                    const matchTimeElement = document.createElement('p');
+                    const countdownElement = document.createElement('h2');
+    
+                    teamsElement.innerText = `${homeTeam} vs ${awayTeam}`;
+                    matchTimeElement.innerText = `Match Date: ${new Date(matchDate).toLocaleString()}`;
+    
+                    matchDiv.appendChild(teamsElement);
+                    matchDiv.appendChild(matchTimeElement);
+                    matchDiv.appendChild(countdownElement);
+                    matchInfoContainer.appendChild(matchDiv);
+    
+                    startCountdown(matchDate, countdownElement);
+                });
+            }
+        })
+        .catch(error => {
+            document.getElementById('match-info').innerText = "Error fetching match data.";
+        });
+    </script>
+</body>
+</html>
