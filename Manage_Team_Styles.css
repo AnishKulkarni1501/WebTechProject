@@ -1,0 +1,180 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(81, 104, 170);
+    color: white;
+    padding: 10px 20px;
+
+}
+
+.menu-icon {
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.menu-icon:hover {
+    background-color: rgb(48, 45, 45);
+}
+
+.auth-buttons a {
+    color: white;
+    text-decoration: none;
+    margin-left: 10px;
+}
+
+#signlog {
+    transition: 0.5s;
+}
+
+#signlog:hover {
+    background-color: #000000;
+}
+
+/* Side Menu */
+.side-menu {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    top: 55px;
+    left: 0;
+    background-color: rgb(81, 104, 170);
+    overflow-x: hidden;
+    transition: 0.3s;
+    padding-top: 20px;
+    z-index: 1000;
+}
+
+.side-menu a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 18px;
+    color: white;
+    display: block;
+    transition: 0.5s;
+}
+
+.side-menu a:hover {
+    background-color: #575757;
+}
+
+.dropbtn {
+    background-color: #04AA6D;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropbtn:hover,
+.dropbtn:focus {
+    background-color: #3e8e41;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    /* Keep this to allow dropdown behavior */
+    flex:0 0 30%;
+}
+
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    right: 0;
+    z-index: 1;
+    position: absolute;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown a:hover {
+    background-color: #ddd;
+}
+
+.show {
+    display: block;
+}
+
+#boxes {
+    margin-top: none;
+    background: #148eda;
+}
+
+.box {
+    width: 90%;
+    /* Make each box take up the full width of the container */
+    padding: 10px;
+    text-align: center;
+    background-color: rgb(81, 104, 170);
+    color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    border: 2px solid darkblue;
+    margin: 10px 0;
+    /* Add margin between boxes */
+    margin-left: 20px;
+    display: flex; /* Enable flexbox layout */
+    justify-content: space-between; /* Distribute space between items */
+}
+
+
+/* Manage_Team_Styles.css */
+
+/* Apply the background image */
+#User_Team {
+    background-image: url('Half_Pitch.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 600px;
+    position: relative;
+    /* padding: 40px; */
+    background-clip: border-box;
+    /* width: 90%;
+    height: 600px;
+    position: relative; */
+    /* margin: 40px; */
+    flex: 0 0 60%;
+}
+
+
+/* Styling the buttons */
+#User_Team button {
+    position: absolute;
+    width: 60px;
+    /* Set a fixed width */
+    height: 60px;
+    /* Set the same height */
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    /* Make the button circular */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 50px;
+    /* Adjust the font size as needed */
+    padding: 0;
+    /* Remove padding since we are now setting width and height */
+}
