@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upcoming Matches</title>
+</head>
+<body>
+    <h1>Next Matches</h1>
+    <div id="matches"></div>
+
+    <script>
+        async function fetchMatches() {
+            try {
+                const response = await fetch('/next_match');
+                const data = await response.json();
+                
+                if (data.matches) {
+                    const matchesDiv = document.getElementById('matches');
+                    data.matches.forEach(match => {
+                        const matchElement = document.createElement('div');
+                        matchElement.innerHTML = `
+                            <p><strong>${match.home_team}</strong> vs <strong>${match.away_team}</strong></p>
+                            <p>Date: ${new Date(match.match_date).toLocaleString()}</p>
+                            <hr>
+                        `;
+                        matchesDiv.appendChild(matchElement);
+                    });
+                } else {
+                    document.getElementById('matches').innerText = 'No upcoming matches found.';
+                }
+            } catch (error) {
+                document.getElementById('matches').innerText = 'Error loading matches.';
+            }
+        }
+
+        // Fetch matches when the page loads
+        window.onload = fetchMatches;
+    </script>
+</body>
+</html>
