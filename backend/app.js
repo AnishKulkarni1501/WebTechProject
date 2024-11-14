@@ -1,5 +1,6 @@
 const express = require('express');
 const axios = require('axios');
+const path = require('path'); 
 const app = express();
 const PORT = 3000;
 
@@ -9,10 +10,9 @@ const headers = { 'X-Auth-Token': apiKey };
 
 app.set('view engine', 'ejs');
 
-app.get('/', (req, res) => {
+app.get('/upcoming', (req, res) => {
     res.render('index');
 });
-
 app.get('/next_match', async (req, res) => {
     try {
         const response = await axios.get(baseUrl, {
@@ -37,4 +37,8 @@ app.get('/next_match', async (req, res) => {
 
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
+});
+
+app.get('/howtoplay', (req, res) => {
+    res.sendFile(path.join(__dirname, 'views', 'howtoplay.html'));
 });

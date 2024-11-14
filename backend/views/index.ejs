@@ -4,12 +4,55 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Upcoming Matches</title>
-</head>
+    <head>
+        <style>
+            /* Add these styles */
+            .menu-icon {
+                position: fixed;
+                top: 20px;
+                left: 20px;
+                font-size: 24px;
+                cursor: pointer;
+                z-index: 1000; /* Ensures it stays above other content */
+                color: #4CAF50;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="menu-icon" id="menuToggle" onclick="toggleMenu()">&#9776;</div>
+        
+        <!-- Rest of your HTML code -->
+    </body>
 <body>
+    <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
+
+    <!-- Side Menu -->
+    <div id="side-menu" class="side-menu">
+        <div class="close-button" onclick="toggleMenu()">✖</div>
+        <a href="/">Home</a>
+        <a href="/leaderboard">Leader Board</a>
+        <a href="/upcoming-matches">Upcoming Matches</a>
+    </div>
+
+    <!-- Overlay -->
+    <div id="overlay" class="overlay" onclick="toggleMenu()"></div>
+
     <h1>Next Matches</h1>
     <div id="matches"></div>
 
     <script>
+        function toggleMenu() {
+            const menu = document.getElementById('side-menu');
+            const overlay = document.getElementById('overlay');
+            if (menu.style.width === '250px') {
+                menu.style.width = '0';
+                overlay.style.display = 'none';
+            } else {
+                menu.style.width = '250px';
+                overlay.style.display = 'block';
+            }
+        }
+
         async function fetchMatches() {
             try {
                 const response = await fetch('/next_match');
@@ -19,6 +62,7 @@
                     const matchesDiv = document.getElementById('matches');
                     data.matches.forEach((match, index) => {
                         const matchElement = document.createElement('div');
+                        matchElement.classList.add('match');
                         
                         const matchDate = new Date(match.match_date);
                         const formattedDate = matchDate.toLocaleDateString('en-GB');
@@ -26,7 +70,7 @@
                         matchElement.innerHTML = `
                             <p><strong>${match.home_team}</strong> vs <strong>${match.away_team}</strong></p>
                             <p>Match Date: ${formattedDate}</p>
-                            <p id="timeLeft-${index}">Time Left: Calculating...</p>
+                            <p class="time-left" id="timeLeft-${index}">Time Left: Calculating...</p>
                             <hr>
                         `;
                         matchesDiv.appendChild(matchElement);
