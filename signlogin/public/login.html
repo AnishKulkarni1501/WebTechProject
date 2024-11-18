@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <style>
+    /* General Styles */
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f9;
+    }
+    /* Header */
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #222;
+        color: white;
+        padding: 15px 20px;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+    }
+    h1 { margin: 0; font-size: 26px; }
+    .menu-icon {
+        font-size: 30px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+    .menu-icon:hover { background-color: #444; border-radius: 5px; }
+/* Side Menu - initially hidden */
+.side-menu {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    top: 55px;
+    left: 0;
+    background-color: #333;
+    transition: 0.3s;
+    padding-top: 20px;
+    z-index: 1001;
+    opacity: 0;
+    pointer-events: none;  /* Disable interaction when hidden */
+}
+
+/* Set pointer-events to auto when side menu is open */
+.side-menu.open {
+    width: 250px;
+    opacity: 1;
+    pointer-events: auto;
+}
+    .side-menu a {
+        padding: 10px 15px;
+        text-decoration: none;
+        font-size: 18px;
+        color: white;
+        display: block;
+        transition: background-color 0.3s;
+    }
+    .side-menu a:hover { background-color: #444; }
+    .close-button {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        font-size: 30px;
+        color: white;
+        cursor: pointer;
+    }
+    .overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 1000;
+    }
+
+    /* Form Styles */
+    main {
+        max-width: 400px;
+        margin: 60px auto;
+        padding: 20px;
+        background: #fff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        text-align: center;
+    }
+    main h2 { color: #222; margin-bottom: 15px; }
+    label { display: block; font-size: 16px; margin-top: 10px; color: #444; }
+    input[type="text"], input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+    button {
+        margin-top: 20px;
+        padding: 10px 20px;
+        background-color: #222;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+    button:hover { background-color: #444; }
+    a { color: #007bff; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* Footer */
+    .footer {
+        background-color: #222;
+        color: white;
+        text-align: center;
+        padding: 10px;
+        position: relative;
+    }
+    .social-icons {
+        position: absolute;
+        bottom: 10px;
+        right: 20px;
+    }
+    .social-icons a {
+        color: white;
+        text-decoration: none;
+        margin-left: 15px;
+        font-size: 22px;
+        transition: color 0.3s;
+    }
+    .instagram:hover { color: rgb(73, 20, 135); }
+    .twitter:hover { color: rgb(0, 187, 249); }
+    .yt:hover { color: rgb(255, 0, 0); }
+    .telegram:hover { color: rgb(0, 47, 255); }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+      <div class="menu-icon" id="menuToggle" onclick="toggleMenu()">&#9776;</div>
+      <h1>Login</h1>
+  </header>
+
+  <!-- Side Menu -->
+  <div id="side-menu" class="side-menu">
+      <div class="close-button" onclick="toggleMenu()">✖</div>
+      <a href="/">Home</a>
+      <a href="/leaderboard">Leader Board</a>
+      <a href="/upcoming-matches">Upcoming Matches</a>
+      <a href="/results">Results</a>
+      <a href="/manageteam">Manage Team</a>
+      <a href="/about">About</a>
+      <a href="/userinfo">User Info (only if signed-in)</a>
+  </div>
+
+  <!-- Overlay for side menu -->
+  <div id="overlay" class="overlay" onclick="toggleMenu()"></div>
+
+  <!-- Login Form -->
+  <main>
+    <h2>Login</h2>
+    <form action="/login" method="POST">
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" required>
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required>
+      <button type="submit">Log In</button>
+    </form>
+    <p><a href="/signup">Don't have an account? Sign up</a></p>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+      &copy; Ultimate Fantasy League
+      <div class="social-icons">
+          <a href="#" target="_blank" class="instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" target="_blank" class="twitter"><i class="fab fa-twitter"></i></a>
+          <a href="#" target="_blank" class="yt"><i class="fab fa-youtube"></i></a>
+          <a href="#" target="_blank" class="telegram"><i class="fab fa-telegram"></i></a>
+      </div>
+  </footer>
+
+  <!-- Script for toggling side menu -->
+  <script>
+function toggleMenu() {
+    const menu = document.getElementById('side-menu');
+    const overlay = document.getElementById('overlay');
+    
+    if (menu.classList.contains('open')) {
+        // Close the menu
+        menu.classList.remove('open');
+        overlay.style.display = 'none';
+    } else {
+        // Open the menu
+        menu.classList.add('open');
+        overlay.style.display = 'block';
+    }
+}
+  </script>
+</body>
+</html>
